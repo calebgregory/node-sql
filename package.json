@@ -1,0 +1,23 @@
+{
+  "name": "node-sql",
+  "version": "1.0.0",
+  "description": "Using a SQL Node.js driver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calebgregory/node-sql.git"
+  },
+  "author": "Caleb Gregory <calebgregory@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calebgregory/node-sql/issues"
+  },
+  "homepage": "https://github.com/calebgregory/node-sql#readme",
+  "dependencies": {
+    "babel": "^5.8.23",
+    "sqlite3": "^3.0.10"
+  }
+}

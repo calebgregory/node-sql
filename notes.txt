@@ -1,0 +1,141 @@
+# ASSIGNMENT #1
+
+1. Write a query that will get the First and Last Names of every
+   employee that lives in "London".
+
+```
+        SELECT FirstName, LastName
+        FROM Employees AS E
+        WHERE E.City = 'London';
+```
+
+2. Write a query that will get the OrderIDs for orders shipped to
+   France.
+
+```
+        SELECT OrderID
+        FROM Orders AS O
+        WHERE O.ShipCountry = 'France';
+```
+
+3. Write a query that will get get the First and Last Names of every
+   employee that reports to an employee with the last name of "Buchanan".
+
+```
+        SELECT E.FirstName, E.LastName
+        FROM Employees AS E
+        INNER JOIN Employees AS S
+          ON S.EmployeeID = E.ReportsTo
+        WHERE S.LastName = 'Buchanan';
+```
+
+4. Write a query that will get the Company Names and full addresses of
+   all the suppliers which can provide "tofu".
+
+```
+        SELECT CompanyName, Address, City, Region, PostalCode, Country
+        FROM Suppliers AS S
+        INNER JOIN Products AS P
+          ON P.SupplierID = S.SupplierID
+        WHERE P.ProductName LIKE '%tofu%';
+```
+
+5. Write a query that will get ProductNames of those products that are
+   on order and from companies based in the UK.
+
+```
+        SELECT ProductName
+        FROM Products AS P
+        INNER JOIN 'Order Details' AS OD
+          ON OD.ProductID = P.ProductID
+        INNER JOIN Suppliers AS S
+          ON S.SupplierID = P.SupplierID
+        WHERE S.Country LIKE '%uk%';
+```
+
+6. Write a query that will get the OrderIDs, unit price, and quantity of
+   orders taken by the sales representative "Anne Dodsworth" from the
+   companies based in "London".
+
+```
+        SELECT O.OrderID AS OrderID,
+               OD.UnitPrice AS UnitPrice,
+               OD.Quantity AS Quantity
+        FROM Orders AS O
+        INNER JOIN 'Order Details' AS OD
+          ON OD.OrderID = O.OrderID
+        INNER JOIN Products AS P
+          ON P.ProductID = OD.ProductID
+        INNER JOIN Suppliers AS S
+          ON S.SupplierID = P.SupplierID
+        INNER JOIN Employees AS E
+          ON E.EmployeeID = O.EmployeeID
+        WHERE S.City LIKE '%london%'
+          AND E.LastName LIKE '%dodsworth%'
+          AND E.FirstName LIKE '%anne%';
+```
+
+7. Write a query to find all suppliers' CompanyNames who have sold
+   products to employees who work in the Western Region.
+```
+SELECT DISTINCT CompanyName
+FROM Suppliers AS S
+INNER JOIN Products AS P
+  ON P.SupplierID = S.SupplierID
+INNER JOIN 'Order Details' AS OD
+  ON OD.ProductID = P.ProductID
+INNER JOIN Orders AS O
+  ON O.OrderID = OD.OrderID
+INNER JOIN Employees AS E
+  ON E.EmployeeID = O.EmployeeID
+INNER JOIN EmployeeTerritories AS ET
+  ON ET.EmployeeID = E.EmployeeID
+INNER JOIN Territories AS T
+  ON T.TerritoryID = ET.TerritoryID
+INNER JOIN Region AS R
+  ON R.RegionID = T.RegionID
+WHERE R.RegionDescription LIKE '%western%';
+```
+
+# ASSIGNMENT #2
+
+1. Create Table
+
+----------------------------------------------
+| Category Favorites                         |
+----------------------------------------------
+| PK : FavoriteID INT NOT NULL autoincrement |
+----------------------------------------------
+| CategoryID INT NOT NULL                    |
+----------------------------------------------
+
+2. Insert Data
+
+CategoryID 2, 4, 6, 8
+i.e. 4 rows
+
+3. Query for Favorite Category Descriptions
+
+------------------------------------
+| FavoriteID | CategoryDescription |
+------------------------------------
+| . . .      | . . .               |
+------------------------------------
+
+4. Update
+
+CategoryFavorites
+FavoriteID: 2
+from 4 to 5
+
+5. Redo Query from [3]
+
+6. Delete
+
+CategoryFavorites
+FavoriteID: 3
+
+7. Insert another row
+CategoryID: 1
+
+8. Rerun [3]
